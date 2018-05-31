@@ -47,17 +47,17 @@ class test_add_group_2(unittest.TestCase):
         # submit group creation
         wd.find_element_by_name("submit").click()
 
-    def fill_group_form(self, wd, name, header, footer):
+    def fill_group_form(self, wd, group):
         # fill group form (начинаем заполнять форму)
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(name)
+        wd.find_element_by_name("group_name").send_keys(group.name)
         wd.find_element_by_name("group_header").click()
         wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(header)
+        wd.find_element_by_name("group_header").send_keys(group.header)
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(footer)
+        wd.find_element_by_name("group_footer").send_keys(group.footer)
 
     def init_group_creation(self, wd):
         # init group creation (начинаем создавать новую группу)
