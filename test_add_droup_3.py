@@ -59,10 +59,6 @@ class test_add_droup_3(unittest.TestCase):
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         wd.find_element_by_name("submit").click()
 
-    # def init_group_create(self, wd):
-        # init group create
-       #  wd.find_element_by_name("new").click()
-
     def open_group_page(self, wd):
         # open group page
         wd.find_element_by_link_text("groups").click()
