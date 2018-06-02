@@ -5,7 +5,7 @@ from group import Group
 
 def is_alert_present(wd):
     try:
-       # wd.switch_to_alert().text
+        wd.switch_to_alert().text
         return True
     except:
         return False
@@ -20,7 +20,6 @@ class test_add_droup_3(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_group_page(wd)
-       # self.init_group_create(wd)
         self.create_group(wd, Group(name="wer", header="cbv", footer="fgj"))
         self.return_to_group_page(wd)
         self.logout(wd)
@@ -30,7 +29,6 @@ class test_add_droup_3(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_group_page(wd)
-       # self.init_group_create(wd)
         self.create_group(wd, Group(name="", header="", footer=""))
         self.return_to_group_page(wd)
         self.logout(wd)
