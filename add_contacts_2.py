@@ -19,7 +19,7 @@ class add_contacts_2(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, "admin", "secret")
         self.open_contacts_page(wd)
-        self.create_contact(wd)
+        self.create_contact(wd, "Ro", "N", "Vi", "me", "bel")
         self.logout(wd)
 
     def open_home_page(self, wd):
@@ -39,7 +39,7 @@ class add_contacts_2(unittest.TestCase):
         # open_contacts_page
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
-    def create_contact(self, wd, name="Ro", midname="N", lastname="Vi", nickname="me", company="bel"):
+    def create_contact(self, wd, name, midname, lastname, nickname, company):
         # init contact_add
         wd.find_element_by_link_text("add new").click()
         # create_contact
