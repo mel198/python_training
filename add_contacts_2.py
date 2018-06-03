@@ -16,17 +16,17 @@ class add_contacts_2(unittest.TestCase):
     
     def test_add_contacts_2(self):
         wd = self.wd
-        # open_site_adress
-        wd.get("http://localhost/addressbook/index.php")
-        # login
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
-        # return_to_contacts_page
-        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+        self.open_home_page(wd)
+        self.login(wd)
+        self.open_contacts_page(wd)
+        self.create_contact(wd)
+        self.logout(wd)
+
+    def logout(self, wd):
+        # Logout
+        wd.find_element_by_link_text("Logout").click()
+
+    def create_contact(self, wd):
         # init contact_add
         wd.find_element_by_link_text("add new").click()
         # create_contact
@@ -89,9 +89,24 @@ class add_contacts_2(unittest.TestCase):
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys("141")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        # Logout
-        wd.find_element_by_link_text("Logout").click()
-    
+
+    def open_contacts_page(self, wd):
+        # open_contacts_page
+        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+
+    def login(self, wd):
+        # login
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys("admin")
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys("secret")
+
+    def open_home_page(self, wd):
+        # open_site_adress
+        wd.get("http://localhost/addressbook/index.php")
+
     def tearDown(self):
         self.wd.quit()
 
