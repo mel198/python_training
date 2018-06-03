@@ -13,7 +13,7 @@ class add_contacts_2(unittest.TestCase):
     def setUp(self):
         self.wd = WebDriver(capabilities={"marionette": False},firefox_binary="/Applications/Firefox-ESR.app/Contents/MacOS/firefox")
         self.wd.implicitly_wait(60)
-    
+
     def test_add_contacts_2(self):
         wd = self.wd
         self.open_home_page(wd)
@@ -22,9 +22,22 @@ class add_contacts_2(unittest.TestCase):
         self.create_contact(wd)
         self.logout(wd)
 
-    def logout(self, wd):
-        # Logout
-        wd.find_element_by_link_text("Logout").click()
+    def open_home_page(self, wd):
+        # open_site_adress
+        wd.get("http://localhost/addressbook/index.php")
+
+    def login(self, wd, username="admin", password="secret"):
+        # login
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys(username)
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys(password)
+
+    def open_contacts_page(self, wd):
+        # open_contacts_page
+        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
     def create_contact(self, wd):
         # init contact_add
@@ -90,22 +103,9 @@ class add_contacts_2(unittest.TestCase):
         wd.find_element_by_name("notes").send_keys("141")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def open_contacts_page(self, wd):
-        # open_contacts_page
-        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
-
-    def login(self, wd):
-        # login
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys("admin")
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys("secret")
-
-    def open_home_page(self, wd):
-        # open_site_adress
-        wd.get("http://localhost/addressbook/index.php")
+    def logout(self, wd):
+        # Logout
+        wd.find_element_by_link_text("Logout").click()
 
     def tearDown(self):
         self.wd.quit()
