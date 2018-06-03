@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from selenium.webdriver.firefox.webdriver import WebDriver
 import unittest
+from contact import Contact
 
 def is_alert_present(wd):
     try:
@@ -19,7 +20,7 @@ class add_contacts_2(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, "admin", "secret")
         self.open_contacts_page(wd)
-        self.create_contact(wd, "Ro", "N", "Vi", "me", "bel")
+        self.create_contact(wd, Contact("Ro", "N", "Vi", "me", "bel"))
         self.logout(wd)
 
     def open_home_page(self, wd):
@@ -45,23 +46,23 @@ class add_contacts_2(unittest.TestCase):
         # create_contact
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(name)
+        wd.find_element_by_name("firstname").send_keys(contact.name)
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(midname)
+        wd.find_element_by_name("middlename").send_keys(contact.midname)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(lastname)
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys(nickname)
+        wd.find_element_by_name("nickname").send_keys(contact.nickname)
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys("ME")
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys(company)
+        wd.find_element_by_name("company").send_keys(contact.company)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
         wd.find_element_by_name("home").send_keys("1234567890")
