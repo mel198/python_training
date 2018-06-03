@@ -40,7 +40,7 @@ class add_contacts_2(unittest.TestCase):
         # open_contacts_page
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
-    def create_contact(self, wd, name, midname, lastname, nickname, company):
+    def create_contact(self, wd, contact):
         # init contact_add
         wd.find_element_by_link_text("add new").click()
         # create_contact
