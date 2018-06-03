@@ -17,7 +17,7 @@ class add_contacts_2(unittest.TestCase):
     def test_add_contacts_2(self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd)
+        self.login(wd, "admin", "secret")
         self.open_contacts_page(wd)
         self.create_contact(wd)
         self.logout(wd)
@@ -26,7 +26,7 @@ class add_contacts_2(unittest.TestCase):
         # open_site_adress
         wd.get("http://localhost/addressbook/index.php")
 
-    def login(self, wd, username="admin", password="secret"):
+    def login(self, wd, username, password):
         # login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
@@ -39,29 +39,29 @@ class add_contacts_2(unittest.TestCase):
         # open_contacts_page
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
 
-    def create_contact(self, wd):
+    def create_contact(self, wd, name="Ro", midname="N", lastname="Vi", nickname="me", company="bel"):
         # init contact_add
         wd.find_element_by_link_text("add new").click()
         # create_contact
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys("Ro")
+        wd.find_element_by_name("firstname").send_keys(name)
         wd.find_element_by_name("middlename").click()
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys("N")
+        wd.find_element_by_name("middlename").send_keys(midname)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_name("lastname").click()
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys("Vi")
+        wd.find_element_by_name("lastname").send_keys(lastname)
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys("me")
+        wd.find_element_by_name("nickname").send_keys(nickname)
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys("ME")
         wd.find_element_by_name("company").click()
         wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys("bel")
+        wd.find_element_by_name("company").send_keys(company)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
         wd.find_element_by_name("home").send_keys("1234567890")
