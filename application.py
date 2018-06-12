@@ -1,11 +1,11 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
 
-
 class Application:
 
     def __init__(self):
         self.wd = WebDriver(capabilities={"marionette": False},firefox_binary="/Applications/Firefox-ESR.app/Contents/MacOS/firefox")
         self.wd.implicitly_wait(60)
+        self.app = Application
 
     def open_home_page(self):
         wd = self.wd
@@ -61,5 +61,3 @@ class Application:
     def destroy (self):
         self.wd.quit()
 
-        #def destroy (self)
-        # self.app.destroy()

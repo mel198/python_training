@@ -22,4 +22,3 @@ def test_test_add_empty_group_3(app):
     app.create_group(Group(name="", header="", footer=""))
     app.logout()
 
-
