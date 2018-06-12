@@ -6,7 +6,7 @@ from application_contact import AppContact
 
 @pytest.fixture
 def app(request):
-    fixture = AppContact
+    fixture = AppContact()
     request.addfinalizer(fixture.destroy)
     return fixture
 
