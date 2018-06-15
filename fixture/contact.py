@@ -1,35 +1,15 @@
-from selenium.webdriver.firefox.webdriver import WebDriver
+class ContactHelper:
 
-
-class AppContact:
-    def __init__(self):
-        self.wd = WebDriver(capabilities={"marionette": False}, firefox_binary="/Applications/Firefox-ESR.app/Contents/MacOS/firefox")
-        self.wd.implicitly_wait(60)
-        self.app = AppContact
-
-    def open_home_page(self):
-        wd = self.wd
-        # open_site_adress
-        wd.get("http://localhost/addressbook/index.php")
-
-    def login(self, username, password):
-        wd = self.wd
-        self.open_home_page()
-        # login
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
+    def __init__(self, app):
+        self.app = app
 
     def open_contacts_page(self):
-        wd = self.wd
+        wd = self.app.wd
         # open_contacts_page
-        wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+        wd.find_element_by_link_text("home").click()
 
     def create_contact(self, contact):
-        wd = self.wd
+        wd = self.app.wd
         self.open_contacts_page()
         # init contact_add
         wd.find_element_by_link_text("add new").click()
@@ -93,11 +73,3 @@ class AppContact:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys("141")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-
-    def logout(self):
-        wd = self.wd
-        # Logout
-        wd.find_element_by_link_text("Logout").click()
-
-    def destroy(self):
-        self.wd.quit()
