@@ -73,3 +73,34 @@ class ContactHelper:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys("141")
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def test_select_first_contact(self):
+        wd = self.app.wd
+        self.open_contacts_page()
+        # choose check box
+        wd.find_element_by_name("selected[]").click()
+
+    def test_del_first_contact(self):
+        wd = self.app.wd
+        self.open_contacts_page()
+        # choose check box
+        self.test_select_first_contact()
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        wd.switch_to_alert().accept()
+
+    def test_modif_first_contact(self):
+        wd = self.app.wd
+        self.open_contacts_page()
+        # choose first contact
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys("Roman")
+        wd.find_element_by_name("middlename").click()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("middlename").send_keys("Nick")
+        wd.find_element_by_name("lastname").click()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys("Vishn")
+        wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
+
