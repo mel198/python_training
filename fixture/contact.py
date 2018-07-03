@@ -26,10 +26,10 @@ class ContactHelper:
     def fill_contact_form(self, contact):
         wd = self.app.wd
         self.change_field_value("firstname", contact.name)
-        self.change_field_value("middlename", contact.name)
-        self.change_field_value("lastname", contact.name)
-        self.change_field_value("nickname", contact.name)
-        self.change_field_value("company", contact.name)
+        self.change_field_value("middlename", contact.midname)
+        self.change_field_value("lastname", contact.lastname)
+        self.change_field_value("nickname", contact.nickname)
+        self.change_field_value("company", contact.company)
 
     def test_select_first_contact(self):
         wd = self.app.wd
@@ -45,13 +45,18 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
 
-    def test_modify_first_contact(self, new_contact_data):
+    def test_modify_first_contact(self, contact):
         wd = self.app.wd
         self.open_contacts_page()
         # choose first contact
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         # fill contact
-        self.fill_contact_form(new_contact_data)
-        #click submit
+        self.fill_contact_form(contact)
+        # click submit
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.open_contacts_page()
+        return len(wd.find_elements_by_name("selected[]"))
 

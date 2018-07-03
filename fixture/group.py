@@ -41,8 +41,8 @@ class GroupHelper:
 
     def select_first_group(self):
         wd = self.app.wd
-        self.open_group_page()
         # select first group
+        wd.find_element_by_name("selected[]").click()
 
     def test_modify_first_group(self, new_group_data):
         wd = self.app.wd
